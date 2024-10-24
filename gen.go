@@ -19,6 +19,9 @@ var funcMap = template.FuncMap{
 	"join": func(items []string, separator string) string {
 		return strings.Join(items, separator)
 	},
+	"isLast": func(index, length int) bool {
+		return index == length-1
+	},
 }
 
 func main() {
@@ -93,7 +96,9 @@ func generateResume(c *cli.Context) error {
 
 	// Set PDF options
 	pdfg.Dpi.Set(300)
+	pdfg.Cover.DisableSmartShrinking.Set(true)
 	pdfg.PageSize.Set(wkhtmltopdf.PageSizeA4)
+	pdfg.Cover.Zoom.Set(1.0)
 	pdfg.Orientation.Set(wkhtmltopdf.OrientationPortrait)
 	pdfg.Grayscale.Set(false)
 

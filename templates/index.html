@@ -1,184 +1,323 @@
 <!doctype html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <style>
+
+<head>
+  <meta charset="UTF-8" />
+
+  <style>
+    @media print {
       body {
-        font-family:
-          "Roboto",
-          -apple-system,
-          BlinkMacSystemFont,
-          "Segoe UI",
-          Roboto,
-          sans-serif;
-        margin: 24px 32px auto;
-        line-height: 1.5;
-        color: black;
-        font-size: 14px;
+        zoom: 100%;
       }
+    }
 
-      a {
-        color: #2980b9;
-        text-decoration: none;
-        transition: color 0.2s ease;
-      }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-      a:hover {
-        color: #3498db;
-      }
+    @page {
+      size: A4;
+      margin: 0;
+    }
 
-      .header {
-        margin-bottom: 25px;
-        text-align: center;
-      }
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-      .profile-info {
-        margin: 0 auto;
-      }
+    .content {
+      width: 100%;
+      height: 100%;
+      padding: 20px;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
 
-      .name {
-        font-size: 24px;
-        font-weight: 600;
-        margin-bottom: 3px;
-        color: black;
-      }
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.5;
+      color: #000;
+      font-size: 14px;
+      /* Increased from 12px */
+    }
 
-      .title {
-        font-size: 16px;
-        margin-bottom: 8px;
-        color: black;
-      }
+    a {
+      color: #000;
+      text-decoration: underline;
+    }
 
-      .contact {
-        font-size: 14px;
-        margin-bottom: 15px;
-        line-height: 1.6;
-      }
+    a:hover {
+      text-decoration: underline;
+    }
 
-      .section-header {
-        font-size: 18px;
-        font-weight: 800;
-        margin-top: 12px;
-        margin-bottom: 8px;
-        color: black;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        border-bottom: 2px solid #e1e8ed;
-        padding-bottom: 4px;
-      }
+    .header {
+      text-align: center;
+      margin-inline: auto;
+      margin-bottom: 20px;
+    }
 
-      .experience-item,
-      .project-item,
-      .education-item {
-        margin-bottom: 15px;
-      }
+    .name {
+      font-size: 22px;
+      /* Increased from 20px */
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
 
-      .company-title {
-        font-size: 16px;
-        font-weight: 500;
-        color: black;
-      }
+    .title {
+      font-size: 15px;
+      color: #4d4a4a;
+      margin-bottom: 8px;
+    }
 
-      .date-location {
-        font-size: 14px;
-        color: black;
-        opacity: 0.95;
-        font-weight: italic;
-        margin-bottom: 6px;
-      }
+    .contact {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+      font-size: 13px;
+    }
 
-      .achievements {
-        margin: 8px 0 0 8px;
-        list-style-type: disc;
-        font-size: 14px;
-      }
+    .contact a,
+    .contact span {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-right: 8px;
+    }
 
-      .achievements li {
-        margin-bottom: 4px;
-        line-height: 1.4;
-      }
+    .section-header {
+      font-size: 18px;
+      font-weight: 700;
+      margin-top: 16px;
+      margin-bottom: 8px;
+      text-transform: none;
+      border-bottom: 2px solid #000;
+      padding-bottom: 2px;
+    }
 
-      .skills-category {
-        margin-bottom: 6px;
-        font-size: 15px;
-      }
+    .experience-item {
+      margin-bottom: 12px;
+    }
 
-      .skills-category-name {
-        font-weight: 500;
-        margin-right: 4px;
-        color: black;
-      }
+    .company-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 2px;
+    }
 
-      .certificates {
-        list-style-type: disc;
-        display: flex;
-        gap: 2rem;
-      }
+    .role {
+      font-weight: 700;
+    }
 
-      .awards {
-        list-style-type: disc;
-      }
+    .company-name {
+      font-style: italic;
+    }
 
-      .certificates li,
-      .awards li {
-        margin-bottom: 6px;
-        font-size: 14px;
-      }
+    .date-location {
+      font-size: 14px;
+      /* Increased from 12px */
+      color: #4d4a4a;
+      text-align: right;
+    }
 
-      .project-link {
-        font-weight: normal;
-        font-size: 14px;
-        margin-left: 8px;
-      }
-    </style>
-  </head>
-  <body>
-    <!-- Header Section -->
+    .achievements {
+      margin: 4px 0 0 32px;
+      padding-left: 4px;
+      list-style-type: disc;
+    }
+
+    .achievements li {
+      margin-bottom: 2px;
+      line-height: 1.4;
+      font-size: 14px;
+      /* Increased from 12px */
+    }
+
+    .skills-category {
+      margin-bottom: 4px;
+      line-height: 1.6;
+
+    }
+
+    .skills-category-name {
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .project-item {
+      margin-bottom: 8px;
+    }
+
+    .project-header {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 2px;
+    }
+
+    .project-title-info {
+      gap: 12px;
+      min-width: 200px;
+      font-weight: 700;
+      align-items: flex-end;
+    }
+
+    .project-title {
+      font-weight: 700;
+    }
+
+    .project-description {
+      font-size: 14px;
+      /* Increased from 12px */
+      color: #4d4a4a;
+      font-style: italic;
+    }
+
+    .project-date {
+      color: #4d4a4a;
+      font-size: 14px;
+      /* Increased from 12px */
+      margin-left: auto;
+    }
+
+    .education-item {
+      margin-bottom: 8px;
+    }
+
+    .institution {
+      font-weight: 700;
+    }
+
+    .courses {
+      font-size: 14px;
+      /* Increased from 12px */
+      margin-top: 2px;
+    }
+
+    .languages {
+      margin-bottom: 16px;
+    }
+
+    .language-item {
+      font-weight: 700;
+      display: inline;
+    }
+
+    .language-item:not(:last-child)::after {
+      content: " • ";
+      font-weight: normal;
+      margin: 0 8px;
+    }
+
+    .certificates {
+      margin-bottom: 16px;
+      display: flex;
+    }
+
+    .certificate-item {
+      margin-bottom: 4px;
+      font-weight: 700;
+    }
+
+    .certificate-item:not(:last-child)::after {
+      content: " • ";
+      font-weight: normal;
+      margin: 0 8px;
+    }
+
+    .awards {
+      margin-bottom: 16px;
+    }
+
+    .award-item {
+      margin-bottom: 4px;
+    }
+
+    .award-name {
+      font-weight: 700;
+    }
+
+    .inline-link {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .tag {
+      font-style: italic;
+      color: #4d4a4a;
+    }
+
+    .divider {
+      color: #4d4a4a;
+      margin: 0 4px;
+    }
+
+    .skills-line {
+      margin-bottom: 4px;
+    }
+
+
+
+    .vertical-bar {
+      margin: 0 8px;
+      color: #4d4a4a;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="content">
     <div class="header">
-      {{if .Name}}
       <div class="name">{{.Name}}</div>
-      {{end}} {{if .Title}}
       <div class="title">{{.Title}}</div>
-      {{end}} {{if .Contact}}
       <div class="contact">
-        <div>
-          {{if .Contact.Email}}<a href="mailto:{{.Contact.Email}}"
-            >{{.Contact.Email}}</a
-          >{{end}} {{if .Contact.Phone}} | Phone: {{.Contact.Phone}}{{end}}
-        </div>
-        <div>
-          {{if .Contact.Website}}
-          <a href="{{.Contact.Website}}">Portfolio</a>{{end}} {{if
-          .Contact.Github}} | <a href="{{.Contact.Github}}">Github</a>{{end}}
-          {{if .Contact.LinkedIn}} |
-          <a href="{{.Contact.LinkedIn}}"> Linkedin </a>{{end}}
-        </div>
+        {{if .Contact.Email}}
+        <a href="mailto:{{.Contact.Email}}">📧 {{.Contact.Email}}</a>
+        {{end}}
+        {{if .Contact.Phone}}
+        <span>📱 {{.Contact.Phone}}</span>
+        {{end}}
+        {{if .Contact.Website}}
+        <a href="{{.Contact.Website}}">🌐 {{.Contact.Website}}</a>
+        {{end}}
+        {{if .Contact.Github}}
+        <a href="{{.Contact.Github}}">Github</a>
+        {{end}}
+        {{if .Contact.LinkedIn}}
+        <a href="{{.Contact.LinkedIn}}">LinkedIn</a>
+        {{end}}
+        {{if .Contact.HTB}}
+        <a href="{{.Contact.HTB}}">Hackthebox</a>
+        {{end}}
       </div>
-      {{end}}
     </div>
 
-    <!-- Summary Section -->
-    {{if .Summary}}
-    <div class="section">
-      <div class="section-header">Summary</div>
-      <div>{{.Summary}}</div>
-    </div>
-    {{end}}
-
-    <!-- Professional Experience Section -->
     {{if .Experience}}
     <div class="section">
       <div class="section-header">Professional Experience</div>
       {{range .Experience}}
       <div class="experience-item">
-        <div class="company-title">{{.Title}}, {{.Company}}</div>
-        <div class="date-location">
-          {{.StartDate}}{{if .EndDate}} - {{.EndDate}}{{end}}{{if .Location}} |
-          {{.Location}}{{end}}
+        <div class="company-title">
+          <span>
+            <span class="role">{{.Title}}</span>
+            {{if .CompanyURL}}
+            <a href="{{.CompanyURL}}" class="company-name">{{.Company}}</a>
+            {{else}}
+            <span class="company-name">{{.Company}}</span>
+            {{end}}
+          </span>
+          <span class="date-location">
+            {{.StartDate}} – {{.EndDate}} | {{.Location}}
+          </span>
         </div>
         {{if .Achievements}}
         <ul class="achievements">
@@ -192,44 +331,40 @@
     </div>
     {{end}}
 
-    <!-- Skills Section -->
     {{if .Skills}}
     <div class="section">
       <div class="section-header">Skills</div>
-      {{if .Skills.Programming}}
-      <div class="skills-category">
-        <span class="skills-category-name">Programming Languages:</span>
-        {{join .Skills.Programming ", "}}
+      <div class="skills-line">
+        {{range $i, $skill := .Skills}}
+        <span class="skills-category-name">{{$skill.Category}}:</span>
+        <span>{{$skill.Skills }}</span>
+        {{if not (isLast $i (len $.Skills))}}
+        <span class="vertical-bar">|</span>
+        {{end}}
+        {{end}}
       </div>
-      {{end}} {{if .Skills.Security}}
-      <div class="skills-category">
-        <span class="skills-category-name">Security:</span>
-        {{join .Skills.Security ", "}}
-      </div>
-      {{end}} {{if .Skills.DevSecOps}}
-      <div class="skills-category">
-        <span class="skills-category-name">DevSecOps:</span>
-        {{join .Skills.DevSecOps ", "}}
-      </div>
-      {{end}} {{if .Skills.Engineering}}
-      <div class="skills-category">
-        <span class="skills-category-name">Software Engineering:</span>
-        {{join .Skills.Engineering ", "}}
-      </div>
-      {{end}}
     </div>
     {{end}}
 
-    <!-- Projects Section -->
+
+
+
     {{if .Projects}}
     <div class="section">
       <div class="section-header">Projects</div>
       {{range .Projects}}
       <div class="project-item">
-        <div class="company-title">{{.Name}}</div>
-        {{if .Description}}
-        <div class="achievements">{{.Description}}</div>
-        {{end}} {{if .Points}}
+        <div class="project-header">
+          <div class="project-title-info"> <a class="project-title" href="{{.URL}}">{{.Name}}</a> , {{if
+            .Description}}
+            <span style="margin-left: 1px" class="project-description">{{.Description}}</span> {{end}}
+          </div>
+          {{if .Date}}
+          <span class="project-date">{{.Date}}</span>
+          {{end}}
+        </div>
+
+        {{if .Points}}
         <ul class="achievements">
           {{range .Points}}
           <li>{{.}}</li>
@@ -241,56 +376,67 @@
     </div>
     {{end}}
 
-    <!-- Education Section -->
     {{if .Education}}
     <div class="section">
       <div class="section-header">Education</div>
       {{range .Education}}
       <div class="education-item">
-        <div class="company-title">{{.Degree}}, {{.Institution}}</div>
-        <div class="date-location">
-          {{if .Period}}{{.Period}}{{end}}{{if .Location}} |
-          {{.Location}}{{end}}
+        <div class="company-title">
+          <span class="institution">{{.Institution}}</span>
+          <span class="date-location">
+            {{if .Period}}{{.Period}}{{end}}{{if .Location}} | {{.Location}}{{end}}
+          </span>
         </div>
+        {{if .Courses}}
+        <div class="courses">
+          Courses: {{.Courses}}
+        </div>
+        {{end}}
       </div>
       {{end}}
     </div>
     {{end}}
 
-    <!-- Languages Section -->
     {{if .Languages}}
     <div class="section">
       <div class="section-header">Languages</div>
       <div class="languages">
         {{range .Languages}}
-        <span>{{.Name}}{{if .Level}} — {{.Level}}{{end}}</span>
+        <span class="language-item">{{.Name}}{{if .Level}} — {{.Level}}{{end}}</span>
         {{end}}
       </div>
     </div>
     {{end}}
 
-    <!-- Certificates Section -->
     {{if .Certificates}}
     <div class="section">
       <div class="section-header">Certificates</div>
-      <ul class="certificates">
+      <div class="certificates">
         {{range .Certificates}}
-        <li><a href="{{.URL}}"> {{.Name}}</a></li>
+        <div class="certificate-item">
+          <a href="{{.URL}}" class="inline-link">{{.Name}}</a>
+        </div>
         {{end}}
-      </ul>
+      </div>
     </div>
     {{end}}
 
-    <!-- Awards Section -->
     {{if .Awards}}
     <div class="section">
       <div class="section-header">Awards</div>
-      <ul class="awards">
+      <url class="awards">
         {{range .Awards}}
-        <li>{{.}}</li>
+        <li class="award-item company-title">
+          <span class="award-name">{{.Name}}
+            {{if .Organization}} - {{.Organization}}{{end}}
+          </span>
+          <span class="date-location">{{if .Date}} {{.Date}}{{end}}</span>
+        </li>
         {{end}}
-      </ul>
+      </url>
     </div>
     {{end}}
-  </body>
+  </div>
+</body>
+
 </html>

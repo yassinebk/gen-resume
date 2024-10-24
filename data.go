@@ -7,25 +7,28 @@ type Resume struct {
 	Contact      *Contact      `yaml:"contact,omitempty"`
 	Summary      string        `yaml:"summary,omitempty"`
 	Experience   []Experience  `yaml:"professional_experience,omitempty"`
-	Skills       *Skills       `yaml:"skills,omitempty"`
+	Skills       []SkillGroup  `yaml:"skills,omitempty"`
 	Projects     []Project     `yaml:"projects,omitempty"`
 	Education    []Education   `yaml:"education,omitempty"`
 	Languages    []Language    `yaml:"languages,omitempty"`
 	Certificates []Certificate `yaml:"certificates,omitempty"`
-	Awards       []string      `yaml:"awards,omitempty"`
+	Awards       []Award       `yaml:"awards,omitempty"`
 }
 
 type Contact struct {
 	Email    string `yaml:"email,omitempty"`
 	Phone    string `yaml:"phone,omitempty"`
 	Website  string `yaml:"website,omitempty"`
+	Blog     string `yaml:"blog,omitempty"`
 	Github   string `yaml:"github,omitempty"`
 	LinkedIn string `yaml:"linkedin,omitempty"`
+	HTB      string `yaml:"hackthebox,omitempty"`
 }
 
 type Experience struct {
 	Title        string   `yaml:"title,omitempty"`
 	Company      string   `yaml:"company,omitempty"`
+	CompanyURL   string   `yaml:"link,omitempty"`
 	Location     string   `yaml:"location,omitempty"`
 	StartDate    string   `yaml:"start_date,omitempty"`
 	EndDate      string   `yaml:"end_date,omitempty"`
@@ -38,6 +41,7 @@ type Project struct {
 	Description  string   `yaml:"description,omitempty"`
 	Technologies []string `yaml:"technologies,omitempty"`
 	Points       []string `yaml:"points,omitempty"`
+	Date         string   `yaml:"date,omitempty"`
 }
 
 type Certificate struct {
@@ -45,11 +49,9 @@ type Certificate struct {
 	URL  string `yaml:"url,omitempty"`
 }
 
-type Skills struct {
-	Programming []string `yaml:"programming_languages,omitempty"`
-	Security    []string `yaml:"security,omitempty"`
-	DevSecOps   []string `yaml:"devsecops,omitempty"`
-	Engineering []string `yaml:"software_engineering,omitempty"`
+type SkillGroup struct {
+	Category string `yaml:"category,omitempty"`
+	Skills   string `yaml:"skills,omitempty"`
 }
 
 type Education struct {
@@ -63,4 +65,10 @@ type Education struct {
 type Language struct {
 	Name  string `yaml:"name,omitempty"`
 	Level string `yaml:"level,omitempty"`
+}
+
+type Award struct {
+	Name         string `yaml:"name,omitempty"`
+	Organization string `yaml:"org,omitempty"`
+	Date         string `yaml:"date,omitempty"`
 }

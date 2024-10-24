@@ -1,0 +1,74 @@
+name: "John Doe"
+title: "Software Engineer"
+profile_image: "https://example.com/profile.jpg"
+
+contact:
+  email: "john.doe@example.com"
+  phone: "+1234567890"
+  website: "https://johndoe.dev"
+  github: "https://github.com/johndoe"
+  linkedin: "https://linkedin.com/in/johndoe"
+
+summary: "Passionate software engineer with experience in building scalable web applications and securing systems."
+
+professional_experience:
+  - title: "Backend Developer"
+    company: "Tech Corp"
+    location: "San Francisco, CA"
+    start_date: "2020-01"
+    end_date: "2022-06"
+    achievements:
+      - "Implemented RESTful APIs that improved system performance by 30%."
+      - "Led migration from monolith to microservices architecture."
+
+skills:
+  programming_languages:
+    - "Go"
+    - "Python"
+    - "JavaScript"
+  security:
+    - "OWASP Top 10"
+    - "Penetration Testing"
+  devsecops:
+    - "Docker"
+    - "Kubernetes"
+    - "Nuclei"
+  software_engineering:
+    - "Agile Methodologies"
+    - "System Design"
+
+projects:
+  - name: "CTF Platform"
+    url: "https://ctf.example.com"
+    description: "A capture-the-flag platform with real-time scoring and dynamic challenges."
+    technologies:
+      - "ASP.NET Core"
+      - "SignalR"
+      - "React"
+    points:
+      - "Developed a leaderboard with real-time updates."
+      - "Implemented secure authentication using OAuth."
+
+education:
+  - degree: "MSc in Software Engineering"
+    institution: "INSAT Tunisia"
+    period: "2021-2025"
+    location: "Tunis, Tunisia"
+    courses:
+      - "Operating Systems"
+      - "Computer Security"
+      - "Distributed Systems"
+
+languages:
+  - name: "English"
+    level: "Fluent"
+  - name: "French"
+    level: "Intermediate"
+
+certificates:
+  - name: "Certified Kubernetes Administrator"
+    url: "https://example.com/certification/kubernetes"
+
+awards:
+  - "Best CTF Team - Cybersecurity Summit 2023"
+  - "Dean's List Award for Academic Excellence"

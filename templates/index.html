@@ -1,0 +1,296 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family:
+          "Roboto",
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          Roboto,
+          sans-serif;
+        margin: 24px 32px auto;
+        line-height: 1.5;
+        color: black;
+        font-size: 14px;
+      }
+
+      a {
+        color: #2980b9;
+        text-decoration: none;
+        transition: color 0.2s ease;
+      }
+
+      a:hover {
+        color: #3498db;
+      }
+
+      .header {
+        margin-bottom: 25px;
+        text-align: center;
+      }
+
+      .profile-info {
+        margin: 0 auto;
+      }
+
+      .name {
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 3px;
+        color: black;
+      }
+
+      .title {
+        font-size: 16px;
+        margin-bottom: 8px;
+        color: black;
+      }
+
+      .contact {
+        font-size: 14px;
+        margin-bottom: 15px;
+        line-height: 1.6;
+      }
+
+      .section-header {
+        font-size: 18px;
+        font-weight: 800;
+        margin-top: 12px;
+        margin-bottom: 8px;
+        color: black;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        border-bottom: 2px solid #e1e8ed;
+        padding-bottom: 4px;
+      }
+
+      .experience-item,
+      .project-item,
+      .education-item {
+        margin-bottom: 15px;
+      }
+
+      .company-title {
+        font-size: 16px;
+        font-weight: 500;
+        color: black;
+      }
+
+      .date-location {
+        font-size: 14px;
+        color: black;
+        opacity: 0.95;
+        font-weight: italic;
+        margin-bottom: 6px;
+      }
+
+      .achievements {
+        margin: 8px 0 0 8px;
+        list-style-type: disc;
+        font-size: 14px;
+      }
+
+      .achievements li {
+        margin-bottom: 4px;
+        line-height: 1.4;
+      }
+
+      .skills-category {
+        margin-bottom: 6px;
+        font-size: 15px;
+      }
+
+      .skills-category-name {
+        font-weight: 500;
+        margin-right: 4px;
+        color: black;
+      }
+
+      .certificates {
+        list-style-type: disc;
+        display: flex;
+        gap: 2rem;
+      }
+
+      .awards {
+        list-style-type: disc;
+      }
+
+      .certificates li,
+      .awards li {
+        margin-bottom: 6px;
+        font-size: 14px;
+      }
+
+      .project-link {
+        font-weight: normal;
+        font-size: 14px;
+        margin-left: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header Section -->
+    <div class="header">
+      {{if .Name}}
+      <div class="name">{{.Name}}</div>
+      {{end}} {{if .Title}}
+      <div class="title">{{.Title}}</div>
+      {{end}} {{if .Contact}}
+      <div class="contact">
+        <div>
+          {{if .Contact.Email}}<a href="mailto:{{.Contact.Email}}"
+            >{{.Contact.Email}}</a
+          >{{end}} {{if .Contact.Phone}} | Phone: {{.Contact.Phone}}{{end}}
+        </div>
+        <div>
+          {{if .Contact.Website}}
+          <a href="{{.Contact.Website}}">Portfolio</a>{{end}} {{if
+          .Contact.Github}} | <a href="{{.Contact.Github}}">Github</a>{{end}}
+          {{if .Contact.LinkedIn}} |
+          <a href="{{.Contact.LinkedIn}}"> Linkedin </a>{{end}}
+        </div>
+      </div>
+      {{end}}
+    </div>
+
+    <!-- Summary Section -->
+    {{if .Summary}}
+    <div class="section">
+      <div class="section-header">Summary</div>
+      <div>{{.Summary}}</div>
+    </div>
+    {{end}}
+
+    <!-- Professional Experience Section -->
+    {{if .Experience}}
+    <div class="section">
+      <div class="section-header">Professional Experience</div>
+      {{range .Experience}}
+      <div class="experience-item">
+        <div class="company-title">{{.Title}}, {{.Company}}</div>
+        <div class="date-location">
+          {{.StartDate}}{{if .EndDate}} - {{.EndDate}}{{end}}{{if .Location}} |
+          {{.Location}}{{end}}
+        </div>
+        {{if .Achievements}}
+        <ul class="achievements">
+          {{range .Achievements}}
+          <li>{{.}}</li>
+          {{end}}
+        </ul>
+        {{end}}
+      </div>
+      {{end}}
+    </div>
+    {{end}}
+
+    <!-- Skills Section -->
+    {{if .Skills}}
+    <div class="section">
+      <div class="section-header">Skills</div>
+      {{if .Skills.Programming}}
+      <div class="skills-category">
+        <span class="skills-category-name">Programming Languages:</span>
+        {{join .Skills.Programming ", "}}
+      </div>
+      {{end}} {{if .Skills.Security}}
+      <div class="skills-category">
+        <span class="skills-category-name">Security:</span>
+        {{join .Skills.Security ", "}}
+      </div>
+      {{end}} {{if .Skills.DevSecOps}}
+      <div class="skills-category">
+        <span class="skills-category-name">DevSecOps:</span>
+        {{join .Skills.DevSecOps ", "}}
+      </div>
+      {{end}} {{if .Skills.Engineering}}
+      <div class="skills-category">
+        <span class="skills-category-name">Software Engineering:</span>
+        {{join .Skills.Engineering ", "}}
+      </div>
+      {{end}}
+    </div>
+    {{end}}
+
+    <!-- Projects Section -->
+    {{if .Projects}}
+    <div class="section">
+      <div class="section-header">Projects</div>
+      {{range .Projects}}
+      <div class="project-item">
+        <div class="company-title">{{.Name}}</div>
+        {{if .Description}}
+        <div class="achievements">{{.Description}}</div>
+        {{end}} {{if .Points}}
+        <ul class="achievements">
+          {{range .Points}}
+          <li>{{.}}</li>
+          {{end}}
+        </ul>
+        {{end}}
+      </div>
+      {{end}}
+    </div>
+    {{end}}
+
+    <!-- Education Section -->
+    {{if .Education}}
+    <div class="section">
+      <div class="section-header">Education</div>
+      {{range .Education}}
+      <div class="education-item">
+        <div class="company-title">{{.Degree}}, {{.Institution}}</div>
+        <div class="date-location">
+          {{if .Period}}{{.Period}}{{end}}{{if .Location}} |
+          {{.Location}}{{end}}
+        </div>
+      </div>
+      {{end}}
+    </div>
+    {{end}}
+
+    <!-- Languages Section -->
+    {{if .Languages}}
+    <div class="section">
+      <div class="section-header">Languages</div>
+      <div class="languages">
+        {{range .Languages}}
+        <span>{{.Name}}{{if .Level}} — {{.Level}}{{end}}</span>
+        {{end}}
+      </div>
+    </div>
+    {{end}}
+
+    <!-- Certificates Section -->
+    {{if .Certificates}}
+    <div class="section">
+      <div class="section-header">Certificates</div>
+      <ul class="certificates">
+        {{range .Certificates}}
+        <li><a href="{{.URL}}"> {{.Name}}</a></li>
+        {{end}}
+      </ul>
+    </div>
+    {{end}}
+
+    <!-- Awards Section -->
+    {{if .Awards}}
+    <div class="section">
+      <div class="section-header">Awards</div>
+      <ul class="awards">
+        {{range .Awards}}
+        <li>{{.}}</li>
+        {{end}}
+      </ul>
+    </div>
+    {{end}}
+  </body>
+</html>

@@ -2,7 +2,6 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-
     <style>
       @media print {
         body {
@@ -60,9 +59,16 @@
       }
 
       .header {
-        text-align: center;
-        margin-inline: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         margin-bottom: 20px;
+        position: relative;
+      }
+
+      .header-info {
+        text-align: center;
+        margin-left: 6.75rem;
       }
 
       .name {
@@ -93,16 +99,21 @@
         margin-right: 8px;
       }
 
+      .profile-picture {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
       .section-header {
         font-size: 18px;
         font-weight: 700;
         margin-top: 16px;
         margin-bottom: 8px;
-        text-transform: none;
         border-bottom: 2px solid #000;
         padding-bottom: 2px;
       }
-
       .experience-item {
         margin-bottom: 12px;
       }
@@ -116,6 +127,17 @@
 
       .role {
         font-weight: 700;
+      }
+
+      .profile-picture {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid #ccc;
       }
 
       .company-name {
@@ -271,28 +293,35 @@
   <body>
     <div class="content">
       <div class="header">
-        <div class="name">{{.Name}}</div>
-        <div class="title">{{.Title}}</div>
-        <div class="contact">
-          {{if .Contact.Email}}
-          <a href="mailto:{{.Contact.Email}}">📧 {{.Contact.Email}}</a>
-          {{end}} {{if .Contact.Phone}}
-          <span>📱 {{.Contact.Phone}}</span>
-          {{end}} {{if .Contact.Website}}
-          <a href="{{.Contact.Website}}">🌐 {{.Contact.Website}}</a>
-          {{end}} {{if .Contact.Github}}
-          <a href="{{.Contact.Github}}">Github</a>
-          {{end}} {{if .Contact.LinkedIn}}
-          <a href="{{.Contact.LinkedIn}}">LinkedIn</a>
-          {{end}} {{if .Contact.HTB}}
-          <a href="{{.Contact.HTB}}">Hackthebox</a>
-          {{end}}
+        <div class="header-info">
+          <div class="name">{{.Name}}</div>
+          <div class="title">{{.Title}}</div>
+          <div class="contact">
+            {{if .Contact.Email}}
+            <a href="mailto:{{.Contact.Email}}">📧 {{.Contact.Email}}</a>
+            {{end}} {{if .Contact.Phone}}
+            <span>📱 {{.Contact.Phone}}</span>
+            {{end}} {{if .Contact.Website}}
+            <a href="{{.Contact.Website}}">🌐 {{.Contact.Website}}</a>
+            {{end}} {{if .Contact.Github}}
+            <a href="{{.Contact.Github}}">Github</a>
+            {{end}} {{if .Contact.LinkedIn}}
+            <a href="{{.Contact.LinkedIn}}">LinkedIn</a>
+            {{end}} {{if .Contact.HTB}}
+            <a href="{{.Contact.HTB}}">Hackthebox</a>
+            {{end}}
+          </div>
         </div>
+        <img
+          src="./my-pic.jfif"
+          alt="Profile Picture"
+          class="profile-picture"
+        />
       </div>
 
       {{if .Education}}
       <div class="section">
-        <div class="section-header">Education</div>
+        <div class="section-header">Formation</div>
         {{range .Education}}
         <div class="education-item">
           <div class="company-title">
@@ -304,7 +333,7 @@
           </div>
           {{if .Courses}}
           <div class="courses">
-            <strong>Courses:</strong> {{join .Courses ", "}}
+            <strong>Cours:</strong> {{join .Courses ","}}
           </div>
           {{end}}
         </div>
@@ -312,7 +341,7 @@
       </div>
       {{end}} {{if .Skills}}
       <div class="section">
-        <div class="section-header">Skills</div>
+        <div class="section-header">Compétences</div>
         <div class="skills-line">
           {{range $i, $skill := .Skills}}
           <span class="skills-category-name">{{$skill.Category}}:</span>
@@ -324,7 +353,7 @@
       </div>
       {{end}} {{if .Experience}}
       <div class="section">
-        <div class="section-header">Professional Experience</div>
+        <div class="section-header">Expérience Professionnelle</div>
         {{range .Experience}}
         <div class="experience-item">
           <div class="company-title">
@@ -352,7 +381,7 @@
       </div>
       {{end}} {{if .Projects}}
       <div class="section">
-        <div class="section-header">Projects</div>
+        <div class="section-header">Projets</div>
         {{range .Projects}}
         <div class="project-item">
           <div class="project-header">
@@ -381,7 +410,7 @@
       </div>
       {{end}} {{if .Languages}}
       <div class="section">
-        <div class="section-header">Languages</div>
+        <div class="section-header">Langues</div>
         <div class="languages">
           {{range .Languages}}
           <span class="language-item"
@@ -392,7 +421,7 @@
       </div>
       {{end}} {{if .Certificates}}
       <div class="section">
-        <div class="section-header">Certificates</div>
+        <div class="section-header">Certifications</div>
         <div class="certificates">
           {{range .Certificates}}
           <div class="certificate-item">
@@ -403,7 +432,7 @@
       </div>
       {{end}} {{if .Awards}}
       <div class="section">
-        <div class="section-header">Awards</div>
+        <div class="section-header">Récompenses</div>
         <ul class="awards">
           {{range .Awards}}
           <li class="award-item">

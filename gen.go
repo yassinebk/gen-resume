@@ -7,6 +7,7 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"regexp"
 	"strings"
 
 	"github.com/SebastiaanKlippert/go-wkhtmltopdf"
@@ -14,13 +15,18 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
-// Custom template functions
 var funcMap = template.FuncMap{
 	"join": func(items []string, separator string) string {
 		return strings.Join(items, separator)
 	},
 	"isLast": func(index, length int) bool {
 		return index == length-1
+	},
+	"markdown": func(text string) template.HTML {
+		// Find text between ** ** and wrap it in <strong> tags
+		re := regexp.MustCompile(`\*\*([^*]+)\*\*`)
+		highlighted := re.ReplaceAllString(text, "<strong>$1</strong>")
+		return template.HTML(highlighted)
 	},
 }
 
@@ -69,14 +75,15 @@ func generateResume(c *cli.Context) error {
 		return fmt.Errorf("error parsing YAML: %v", err)
 	}
 
-	// Parse template
-
 	ex, err := os.Executable()
 	if err != nil {
 		panic(err)
 	}
 	exPath := filepath.Dir(ex)
-	tmpl, err := template.New("index.html").Funcs(funcMap).ParseFiles(filepath.Join(exPath, c.String("template")))
+	templatePath := filepath.Join(exPath, c.String("template"))
+	templateName := filepath.Base(templatePath)
+
+	tmpl, err := template.New(templateName).Funcs(funcMap).ParseFiles(templatePath)
 	if err != nil {
 		return fmt.Errorf("error parsing template: %v", err)
 	}
